@@ -16,6 +16,8 @@ public class UIController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timerText;
     private float timer = 0f;
 
+    private bool gameEnded = false;
+
     private void Awake()
     {
         // If there is an instance, and it's not me, delete myself.
@@ -28,6 +30,8 @@ public class UIController : MonoBehaviour
         {
             Instance = this;
         }
+
+        Time.timeScale = 1f;
     }
 
     private void Update()
@@ -44,6 +48,11 @@ public class UIController : MonoBehaviour
 
     private void TogglePause() 
     {
+        if (gameEnded)
+        {
+            return;
+        }
+
         if (pauseScreen.activeInHierarchy)
         {
             pauseScreen.SetActive(false);
@@ -64,6 +73,11 @@ public class UIController : MonoBehaviour
 
     private void CursorHandle()
     {
+        if (gameEnded)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Cursor.lockState = CursorLockMode.None;
@@ -88,5 +102,23 @@ public class UIController : MonoBehaviour
     public void RestartGame() 
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void LoseGame()
+    {
+        pauseScreen.SetActive(false);
+        Cursor.lockState = CursorLockMode.None;
+        gameEnded = true;
+        Time.timeScale = 0f;
+        loseScreen.SetActive(true);
+    }
+
+    public void WinGame() 
+    {
+        pauseScreen.SetActive(false);
+        Cursor.lockState = CursorLockMode.None;
+        gameEnded = true;
+        Time.timeScale = 0f;
+        winScreen.SetActive(true);
     }
 }

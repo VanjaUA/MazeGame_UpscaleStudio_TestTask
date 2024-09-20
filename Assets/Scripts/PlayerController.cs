@@ -51,7 +51,16 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             keyCount++;
             UIController.Instance.UpdateKeysText(keyCount);
+            return;
         }
+
+        GhostController ghost;
+        if (other.TryGetComponent<GhostController>(out ghost))
+        {
+            // Game is over
+            UIController.Instance.LoseGame();
+        }
+
     }
 
     private void RotationHandle()
