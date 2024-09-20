@@ -33,8 +33,6 @@ public class PlayerController : MonoBehaviour
         RotationHandle();
 
         MoveHandle();
-
-        CursorHandle();
     }
 
     private void LateUpdate()
@@ -45,6 +43,10 @@ public class PlayerController : MonoBehaviour
 
     private void RotationHandle()
     {
+        if (Cursor.lockState == CursorLockMode.None)
+        {
+            return;
+        }
         mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")) * mouseSensitivity;
 
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + mouseInput.x, transform.rotation.eulerAngles.z);
@@ -72,18 +74,5 @@ public class PlayerController : MonoBehaviour
 
 
         characterController.Move(movement * Time.deltaTime);
-    }
-
-
-    private void CursorHandle()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Cursor.lockState = CursorLockMode.None;
-        }
-        if (Input.GetMouseButtonDown(0) && Cursor.lockState == CursorLockMode.None)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
     }
 }

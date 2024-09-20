@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewPoint: {fileID: 2433266997277184212}
-  mouseSensitivity: 2
+  mouseSensitivity: 1.5
   invertLook: 0
   walkSpeed: 5
   runSpeed: 10
