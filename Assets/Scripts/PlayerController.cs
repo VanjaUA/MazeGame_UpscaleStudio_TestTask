@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private Camera mainCamera;
 
     private const string KEY_TAG = "Key";
+    private const string WINZONE_TAG = "WinZone";
     private int keyCount = 0;
 
 
@@ -54,11 +55,24 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        if (other.CompareTag(WINZONE_TAG))
+        {
+            UIController.Instance.WinGame();
+            return;
+        }
+
         GhostController ghost;
         if (other.TryGetComponent<GhostController>(out ghost))
         {
-            // Game is over
             UIController.Instance.LoseGame();
+            return;
+        }
+
+        DoorController door;
+        if (other.TryGetComponent<DoorController>(out door))
+        {
+            door.TryOpenDoor(keyCount);
+            return;
         }
 
     }

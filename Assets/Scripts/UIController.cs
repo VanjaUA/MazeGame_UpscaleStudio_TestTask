@@ -10,6 +10,7 @@ public class UIController : MonoBehaviour
     public static UIController Instance { get; private set; }
 
     [SerializeField] private GameObject winScreen, loseScreen, pauseScreen;
+    [SerializeField] private TextMeshProUGUI winScreenTimeText;
 
     [SerializeField] private TextMeshProUGUI keysText;
 
@@ -115,6 +116,7 @@ public class UIController : MonoBehaviour
 
     public void WinGame() 
     {
+        winScreenTimeText.text = timer.ToString("00:00");
         pauseScreen.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
         gameEnded = true;

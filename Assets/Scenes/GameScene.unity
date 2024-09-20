@@ -6280,7 +6280,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1917147349}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1260476052
 PrefabInstance:
@@ -6665,6 +6665,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8276980195792072000, guid: 26cdb79c5f83b7a4fb2a0343d58670f5, type: 3}
   m_PrefabInstance: {fileID: 1291021315}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1295799638
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1295799640}
+  - component: {fileID: 1295799639}
+  m_Layer: 0
+  m_Name: WinZone
+  m_TagString: WinZone
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1295799639
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295799638}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 5, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1295799640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295799638}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -32.54, y: 1.02, z: 31.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1917147349}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1312350366
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7783,7 +7828,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1483595134}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.53, z: -0.02}
+  m_LocalPosition: {x: -33.58, y: 1.53, z: 15.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9891,6 +9936,7 @@ MonoBehaviour:
   winScreen: {fileID: 667319098}
   loseScreen: {fileID: 1188158025}
   pauseScreen: {fileID: 769597491}
+  winScreenTimeText: {fileID: 917922577}
   keysText: {fileID: 73425873}
   timerText: {fileID: 1740790961}
 --- !u!1001 &1890960101
@@ -10110,8 +10156,9 @@ Transform:
   - {fileID: 322205099}
   - {fileID: 1669530202}
   - {fileID: 2113761373}
-  - {fileID: 452313096}
   - {fileID: 1228641489}
+  - {fileID: 452313096}
+  - {fileID: 1295799640}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11355,7 +11402,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7698449999583154284, guid: 5ec38fed1d7de784fb36d72a6d8e883b, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7698449999583154284, guid: 5ec38fed1d7de784fb36d72a6d8e883b, type: 3}
       propertyPath: m_LocalPosition.x
