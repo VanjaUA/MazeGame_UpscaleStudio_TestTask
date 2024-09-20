@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
 
     private Camera mainCamera;
 
+    private const string KEY_TAG = "Key";
+    private int keyCount = 0;
+
 
     private void Start()
     {
@@ -39,6 +42,16 @@ public class PlayerController : MonoBehaviour
     {
         mainCamera.transform.position = viewPoint.position;
         mainCamera.transform.rotation = viewPoint.rotation;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(KEY_TAG))
+        {
+            Destroy(other.gameObject);
+            keyCount++;
+            UIController.Instance.UpdateKeysText(keyCount);
+        }
     }
 
     private void RotationHandle()
