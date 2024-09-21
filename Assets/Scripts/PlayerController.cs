@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     private const string WINZONE_TAG = "WinZone";
     private int keyCount = 0;
 
+    [SerializeField] private AudioSource takingKey, footstepSlow, footstepFast, dying;
+
 
     private void Start()
     {
@@ -30,6 +32,7 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         mainCamera = Camera.main;
+
     }
 
     void Update()
@@ -52,6 +55,7 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             keyCount++;
             UIController.Instance.UpdateKeysText(keyCount);
+            takingKey.Play();
             return;
         }
 
@@ -65,6 +69,7 @@ public class PlayerController : MonoBehaviour
         if (other.TryGetComponent<GhostController>(out ghost))
         {
             UIController.Instance.LoseGame();
+            dying.Play();
             return;
         }
 
@@ -100,15 +105,25 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             activeMoveSpeed = runSpeed;
+            PlayFootsteps(footstepFast);
         }
         else
         {
             activeMoveSpeed = walkSpeed;
+            PlayFootsteps(footstepSlow);
         }
 
         movement = ((transform.right * moveDirection.x) + (transform.forward * moveDirection.z)).normalized * activeMoveSpeed;
 
 
         characterController.Move(movement * Time.deltaTime);
+    }
+
+    private void PlayFootsteps(AudioSource footstepSound) 
+    {
+        if (footstepSound.isPlaying == false && moveDirection != Vector3.zero)
+        {
+            footstepSound.Play();
+        }
     }
 }

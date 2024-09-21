@@ -11,6 +11,8 @@ public class DoorController : MonoBehaviour
     [SerializeField] private int keysToOpen;
     private int keys = 0;
 
+    [SerializeField] private AudioSource doorOpens;
+
     private const string OPEN_DOOR_TRIGGER = "OpenDoor";
 
     private void Start()
@@ -30,6 +32,7 @@ public class DoorController : MonoBehaviour
         if (keys >= keysToOpen)
         {
             animator.SetTrigger(OPEN_DOOR_TRIGGER);
+            doorOpens.Play();
         }
     }
 }

@@ -47,7 +47,7 @@ public class UIController : MonoBehaviour
         UpdateTimer();
     }
 
-    private void TogglePause() 
+    public void TogglePause() 
     {
         if (gameEnded)
         {
@@ -68,8 +68,11 @@ public class UIController : MonoBehaviour
 
     private void UpdateTimer() 
     {
+        //Update timer text in correct format
         timer += Time.deltaTime;
-        timerText.text = timer.ToString("00:00");
+
+        System.TimeSpan timeToDisplay = System.TimeSpan.FromSeconds(timer);
+        timerText.text = timeToDisplay.Minutes.ToString("00") + ":" + timeToDisplay.Seconds.ToString("00");
     }
 
     private void CursorHandle()
@@ -116,7 +119,9 @@ public class UIController : MonoBehaviour
 
     public void WinGame() 
     {
-        winScreenTimeText.text = timer.ToString("00:00");
+        System.TimeSpan timeToDisplay = System.TimeSpan.FromSeconds(timer);
+        winScreenTimeText.text = timeToDisplay.Minutes.ToString("00") + ":" + timeToDisplay.Seconds.ToString("00");
+
         pauseScreen.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
         gameEnded = true;
