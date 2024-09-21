@@ -44,12 +44,13 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate()
     {
-        mainCamera.transform.position = viewPoint.position;
-        mainCamera.transform.rotation = viewPoint.rotation;
+        //Set camera postion and rotaion
+        mainCamera.transform.SetPositionAndRotation(viewPoint.position, viewPoint.rotation);
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        //Checking if trigger object is key
         if (other.CompareTag(KEY_TAG))
         {
             Destroy(other.gameObject);
@@ -59,12 +60,14 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        //Checking if trigger object is win zone
         if (other.CompareTag(WINZONE_TAG))
         {
             UIController.Instance.WinGame();
             return;
         }
 
+        //Checking if trigger object is ghost
         GhostController ghost;
         if (other.TryGetComponent<GhostController>(out ghost))
         {
@@ -73,6 +76,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        //Checking if trigger object is door
         DoorController door;
         if (other.TryGetComponent<DoorController>(out door))
         {
@@ -84,6 +88,7 @@ public class PlayerController : MonoBehaviour
 
     private void RotationHandle()
     {
+        //Method to handle first-player view rotation
         if (Cursor.lockState == CursorLockMode.None)
         {
             return;
@@ -100,6 +105,7 @@ public class PlayerController : MonoBehaviour
 
     private void MoveHandle()
     {
+        //Method to handle first-player movement
         moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
 
         if (Input.GetKey(KeyCode.LeftShift))
@@ -121,6 +127,7 @@ public class PlayerController : MonoBehaviour
 
     private void PlayFootsteps(AudioSource footstepSound) 
     {
+        //Method to play footsteps sound
         if (footstepSound.isPlaying == false && moveDirection != Vector3.zero)
         {
             footstepSound.Play();

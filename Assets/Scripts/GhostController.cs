@@ -36,6 +36,14 @@ public class GhostController : MonoBehaviour
 
     private void Update()
     {
+        SetDestinationHandle();
+    }
+
+    private void SetDestinationHandle() 
+    {
+        //Method to set new destination to enemy
+        //Set target to player if can see him
+
         if (canSeePlayer)
         {
             meshAgent.speed = runSpeed;
@@ -53,6 +61,7 @@ public class GhostController : MonoBehaviour
 
     private void UpdatePositionIndex() 
     {
+        //Method to set new destination index
         newPositionIndex++;
         if (newPositionIndex >= wanderingPositions.Length)
         {
@@ -62,17 +71,19 @@ public class GhostController : MonoBehaviour
 
     private IEnumerator FOVRoutine()
     {
-        WaitForSeconds wait = new WaitForSeconds(0.2f);
+        //Coroutine to call FieldOfViewCheck method with delay
+        WaitForSeconds delay = new WaitForSeconds(0.2f);
 
         while (true)
         {
-            yield return wait;
+            yield return delay;
             FieldOfViewCheck();
         }
     }
 
     private void FieldOfViewCheck()
     {
+        //Method to check if enemy can see player
         Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
 
         if (rangeChecks.Length != 0)

@@ -372,7 +372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyText: {fileID: 1452775429}
   animator: {fileID: 6474034635184742127}
-  keysToOpen: 1
+  keysToOpen: 6
   doorOpens: {fileID: 1384652682409594452}
 --- !u!65 &452313098
 BoxCollider:

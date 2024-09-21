@@ -49,6 +49,7 @@ public class UIController : MonoBehaviour
 
     public void TogglePause() 
     {
+        //Method to toggle pause window
         if (gameEnded)
         {
             return;
@@ -68,7 +69,7 @@ public class UIController : MonoBehaviour
 
     private void UpdateTimer() 
     {
-        //Update timer text in correct format
+        //Method to update timer text in correct format
         timer += Time.deltaTime;
 
         System.TimeSpan timeToDisplay = System.TimeSpan.FromSeconds(timer);
@@ -77,6 +78,7 @@ public class UIController : MonoBehaviour
 
     private void CursorHandle()
     {
+        //Method to correct handle cursor on screen
         if (gameEnded)
         {
             return;
@@ -94,22 +96,27 @@ public class UIController : MonoBehaviour
 
     public void UpdateKeysText(int keysAmount) 
     {
+        //Method to update key counter text
         keysText.text = keysAmount.ToString();
     }
 
     public void QuitGame() 
     {
+        //Method to Quit game
+        //Debug log for Unity Engine
         Debug.Log("Quit Game");
         Application.Quit();
     }
 
     public void RestartGame() 
     {
+        //Method to restart game
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void LoseGame()
     {
+        //Method to correct handling of losing a game
         pauseScreen.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
         gameEnded = true;
@@ -119,9 +126,8 @@ public class UIController : MonoBehaviour
 
     public void WinGame() 
     {
-        System.TimeSpan timeToDisplay = System.TimeSpan.FromSeconds(timer);
-        winScreenTimeText.text = timeToDisplay.Minutes.ToString("00") + ":" + timeToDisplay.Seconds.ToString("00");
-
+        //Method to correct handling of winning a game
+        winScreenTimeText.text = timerText.text;
         pauseScreen.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
         gameEnded = true;

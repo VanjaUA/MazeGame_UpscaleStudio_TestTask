@@ -22,17 +22,23 @@ public class DoorController : MonoBehaviour
 
     private void UpdateKeyText()
     {
+        //Update key counter text in correct format
         keyText.text = keys + "/" + keysToOpen;
     }
 
     public void TryOpenDoor(int keysAmount) 
     {
+        //Tries to open the door, and update key counter text 
         keys = keysAmount;
         UpdateKeyText();
         if (keys >= keysToOpen)
         {
             animator.SetTrigger(OPEN_DOOR_TRIGGER);
-            doorOpens.Play();
+            if (doorOpens.isPlaying == false)
+            {
+                doorOpens.Play();
+            }
+            Destroy(this.gameObject, doorOpens.clip.length);
         }
     }
 }
